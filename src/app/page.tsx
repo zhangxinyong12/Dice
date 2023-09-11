@@ -49,10 +49,9 @@ export default function Home() {
       alert("请输入大于0的数字")
       return
     }
-    console.log(n)
     const list2: number[] = []
     for (let i = 0; i < n; i++) {
-      list2.push(random())
+      list2.push(random() + random())
     }
     const data = {
       n,
@@ -70,13 +69,9 @@ export default function Home() {
         { name: "12", value: findCount(list2, 12) },
       ],
     }
-    setList([
-      ...list,
-      {
-        n,
-        data,
-      },
-    ])
+    const arr = [...list, data]
+    console.log(arr)
+    setList(arr)
   }
   // 计算每个数字出现的次数
   function findCount(array: number[], target: number) {
@@ -93,28 +88,38 @@ export default function Home() {
           <input
             className="h-[36] mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md  focus:ring-1  brfore:content-['*'] brfore:ml-0.5 brfore:text-red-500"
             type="number"
-            min={1}
             placeholder="请输入要执行的次数"
             value={n}
             onChange={(e) => {
-              setN(+e.target.value)
+              setN(e.target.value as any)
             }}
           />
           <button
             onClick={btn}
             className="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            确定开始执行
+            确定
+          </button>
+
+          <button
+            onClick={() => {
+              setList([])
+            }}
+            className="ml-4 bg-gray-300 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+          >
+            清空
           </button>
         </div>
       </div>
-      {list.map((el: any, index: number) => {
-        return (
-          <div key={index} className="w-[490px] h-[440px] box-border">
-            <Dice n={el.n} data={el.data} />
-          </div>
-        )
-      })}
+      <div className="flex flex-wrap">
+        {list.map((el: any, index: number) => {
+          return (
+            <div key={index} className="w-[490px] h-[440px] box-border mb-20">
+              <Dice n={el.n} data={el.data} />
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
