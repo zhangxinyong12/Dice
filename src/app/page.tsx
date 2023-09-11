@@ -15,22 +15,21 @@ import {
 
 type DiceProps = {
   n: number
-  list: { name: string; value: number }[]
+  data: { name: string; value: number }[]
 }
 
-const Dice: React.FC<DiceProps> = ({ n, list }) => {
-  console.log(n, list)
+const Dice: React.FC<DiceProps> = ({ n, data }) => {
+  console.log(n, data)
   return (
-    <div className="dice-box">
-      <h1>执行次数：{n}</h1>
-      <div className="w-[400px] h-[400px]">
+    <div className="dice-box border m-4 p-4">
+      <h1 className="w-full text-center">执行次数：{n}</h1>
+      <div className="w-[400px] h-[400px] mt-4">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={list}>
+          <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Legend />
             <Bar dataKey="value" fill="#8884d8" />
           </BarChart>
         </ResponsiveContainer>
@@ -40,14 +39,52 @@ const Dice: React.FC<DiceProps> = ({ n, list }) => {
 }
 
 export default function Home() {
-  const [list, setList] = useState([])
-  const [n, setN] = useState(0)
+  const [list, setList] = useState<
+    { n: number; data: { name: string; value: number }[] }[]
+  >([])
+  const [n, setN] = useState(2)
+
   function btn() {
     if (n < 1) {
       alert("请输入大于0的数字")
       return
     }
     console.log(n)
+    const list2: number[] = []
+    for (let i = 0; i < n; i++) {
+      list2.push(random())
+    }
+    const data = {
+      n,
+      data: [
+        { name: "2", value: findCount(list2, 2) },
+        { name: "3", value: findCount(list2, 3) },
+        { name: "4", value: findCount(list2, 4) },
+        { name: "5", value: findCount(list2, 5) },
+        { name: "6", value: findCount(list2, 6) },
+        { name: "7", value: findCount(list2, 7) },
+        { name: "8", value: findCount(list2, 8) },
+        { name: "9", value: findCount(list2, 9) },
+        { name: "10", value: findCount(list2, 10) },
+        { name: "11", value: findCount(list2, 11) },
+        { name: "12", value: findCount(list2, 12) },
+      ],
+    }
+    setList([
+      ...list,
+      {
+        n,
+        data,
+      },
+    ])
+  }
+  // 计算每个数字出现的次数
+  function findCount(array: number[], target: number) {
+    return array.filter((el) => el === target).length || 0
+  }
+  // 随机生成1-6的整数
+  function random() {
+    return Math.floor(Math.random() * 6 + 1)
   }
   return (
     <div className="p-4">
@@ -71,21 +108,13 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className="w-[400px] h-[400px]">
-        <Dice
-          n={1}
-          list={[
-            {
-              name: "1",
-              value: 1,
-            },
-            {
-              name: "2",
-              value: 2,
-            },
-          ]}
-        />
-      </div>
+      {list.map((el: any, index: number) => {
+        return (
+          <div key={index} className="w-[490px] h-[440px] box-border">
+            <Dice n={el.n} data={el.data} />
+          </div>
+        )
+      })}
     </div>
   )
 }
