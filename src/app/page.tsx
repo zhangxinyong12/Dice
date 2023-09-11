@@ -23,7 +23,7 @@ const Dice: React.FC<DiceProps> = ({ n, list }) => {
   return (
     <div className="dice-box">
       <h1>执行次数：{n}</h1>
-      <div>
+      <div className="w-[400px] h-[400px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={list}>
             <CartesianGrid strokeDasharray="3 3" />
