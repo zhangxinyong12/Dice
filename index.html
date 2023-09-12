@@ -620,7 +620,7 @@
     // 获取 React 和 ReactDOM 对象
     const { useState, useEffect, useRef } = React;
     const { render } = ReactDOM;
-    const Dice = ({ n, data }) => {
+    const DiceBar = ({ n, data }) => {
       const domRef = useRef(null);
       console.log(n, data)
 
@@ -669,6 +669,23 @@
       return (
         <div className="dice-box border m-4 p-4">
           <div className="w-[400px] h-[400px] mt-4" ref={domRef}>
+          </div>
+        </div>
+      )
+    }
+
+
+    const Dice = () => {
+
+      return (
+        <div className="dice-box">
+          <div className="dice">
+            <div className="dot" ></div>
+            <div className="dot" ></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot" ></div>
+            <div className="dot"></div>
           </div>
         </div>
       )
@@ -749,7 +766,7 @@
             {list.map((el, index) => {
               return (
                 <div key={index} className="w-[490px] h-[440px] box-border mb-20">
-                  <Dice n={el.n} data={el.data} />
+                  <DiceBar n={el.n} data={el.data} />
                 </div>
               )
             })}
