@@ -605,6 +605,90 @@
       font-style: normal
     }
   </style>
+  <style>
+    .dice-box {
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateY(185deg) rotateX(150deg) rotateZ(315deg);
+    }
+
+    .dice {
+      width: 80px;
+      height: 80px;
+      padding: 5px;
+      background-color: tomato;
+      border-radius: 10%;
+      display: flex;
+
+    }
+
+    .dot {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: white;
+    }
+
+    .dice1 {
+      justify-content: center;
+      align-items: center;
+      transform: translateZ(40px);
+    }
+
+    .dice2 {
+      justify-content: space-between;
+      transform: translateX(-40px) rotateY(-90deg);
+    }
+
+    .dice3 {
+      transform: translateY(40px) rotateX(90deg);
+    }
+
+    .dice3 .dot:nth-of-type(2) {
+      align-self: center;
+    }
+
+    .dice3 .dot:nth-of-type(3) {
+      align-self: flex-end;
+    }
+
+    .dice4 {
+      justify-content: space-between;
+    }
+
+    .dice4 .column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .dice5 {
+      transform: translateY(-40px) rotateX(90deg);
+      transform: translateX(40px) rotateY(90deg);
+    }
+
+    .dice5 .column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .dice5 .column:nth-of-type(2) {
+      justify-content: center;
+    }
+
+    .dice6 {
+      justify-content: space-between;
+    }
+
+    .dice6 .column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateZ(-40px);
+    }
+  </style>
 </head>
 
 <body>
@@ -679,13 +763,52 @@
 
       return (
         <div className="dice-box">
-          <div className="dice">
-            <div className="dot" ></div>
-            <div className="dot" ></div>
+          <div className="dice dice1">
+            <div className="dot"></div>
+          </div>
+          <div className="dice dice2">
             <div className="dot"></div>
             <div className="dot"></div>
-            <div className="dot" ></div>
+          </div>
+          <div className="dice dice3">
             <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+          </div>
+          <div className="dice dice4">
+            <div class="column">
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="column">
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div className="dice dice5">
+            <div class="column">
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="column">
+              <span class="dot"></span>
+            </div>
+            <div class="column">
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div className="dice dice6">
+            <div class="column">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="column">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
           </div>
         </div>
       )
@@ -760,6 +883,12 @@
               >
                 清空
               </button>
+              <div>
+                <Dice />
+              </div>
+              <div>
+                <Dice />
+              </div>
             </div>
           </div>
           <div className="flex flex-wrap">
