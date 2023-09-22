@@ -48,14 +48,8 @@
       text-decoration: underline dotted
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-size: inherit;
-      font-weight: inherit
+    h2 {
+      font-weight: normal;
     }
 
     a {
@@ -647,7 +641,10 @@
         // 指定图表的配置项和数据
         const option = {
           title: {
-            text: `${n}两个骰子点数和统计`
+            text: `${n}次两个骰子点数和统计`
+          },
+          grid: {
+            bottom: '20px'
           },
           tooltip: {},
           // legend: {
@@ -674,17 +671,17 @@
         <div className="dice-box border m-4 p-4">
           <div className=" h-[400px] mt-4" ref={domRef} >
           </div>
-          <div className="-mt30">
-            <p>2，3，4，10，11，12出现的次数：
+          <div >
+            <h2 className="h2">2，3，4，10，11，12出现的次数：
               {
                 data.filter(el => [2, 3, 4, 10, 11, 12].includes(el.name * 1)).reduce((a, b) => a + b.value, 0)
               }
-            </p>
-            <p>5，6，7，8，9出现的次数：
+            </h2>
+            <h2 className="h2">5，6，7，8，9出现的次数：
               {
                 data.filter(el => [5, 6, 7, 8, 9].includes(el.name * 1)).reduce((a, b) => a + b.value, 0)
               }
-            </p>
+            </h2>
           </div>
         </div>
       )
