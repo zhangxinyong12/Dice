@@ -120,6 +120,26 @@ export default function Home() {
           )
         })}
       </div>
+
+      <div className="flex justify-start bg-slate-300">
+        <div className="flex-1">1</div>
+        <div className="flex-1 bg-red-50 h-10 text-center leading-10">2</div>
+        <div className="flex-1">3</div>
+      </div>
+      <div className="flex justify-center bg-gray-300 h-[100px] my-10 mx-10 items-center">
+        <div className="h-10">1</div>
+        <div className="h-10 flex-1/3 bg-slate-600">2</div>
+        <div className="h-10">3</div>
+      </div>
+      <div className="bg-[#333] text-[#fff] h-[40px] leading-[40px] pl-[30px] text-[28px] font-bold pt-[20px]">
+        sdff
+      </div>
+      <div className="font-mono flex  flex-col  space-y-10 text-center border-[2px] border-red-500">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>四大护法喀什地方哈桑第哦啊是滴哦收到</div>
+      </div>
     </div>
   )
 }
